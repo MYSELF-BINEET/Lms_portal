@@ -36,9 +36,9 @@ const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
   // const {data:userData,isLoading,refetch} = useLoadUserQuery(undefined,{});
   const [socialAuth, { isSuccess, error }] = useSocialAuthMutation();
   const [logout, setLogout] = useState(false);
-  // const {} = useLogOutQuery(undefined, {
-  //   skip: !logout ? true : false,
-  // });
+  const {} = useLogOutQuery(undefined, {
+    skip: !logout ? true : false,
+  });
 
   useEffect(() => {
     // if(!isLoading){
@@ -58,9 +58,9 @@ const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
           toast.success("Login Successfully");
         }
       }
-      // if(data === null && !isLoading && !userData){
-      //     setLogout(true);
-      // }
+      if(data === null){      //  && !isLoading && !userData
+          setLogout(true);
+      }
     }
   }, [data, user]);
 
@@ -121,7 +121,7 @@ const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
               <div className="hidden text-black cursor-pointer 800px:block dark:text-white">
                 <Link href={"/profile"}>
                   <Image
-                    src={avatar}     //  userData?.user.avatar ? userData.user.avatar.url :
+                    src={user.avatar ? user.avatar.url :avatar}     //  userData?.user.avatar ? userData.user.avatar.url :
                     alt=""
                     width={30}
                     height={30}
@@ -154,7 +154,7 @@ const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
                 // <div className="800px:hiddden">
                 <Link href={"/profile"}>
                   <Image
-                    src={avatar}   // userData?.user.avatar ? userData.user.avatar.url :  
+                    src={ user.avatar ? user.avatar.url : avatar}   // userData?.user.avatar ? userData.user.avatar.url :  
                     alt=""
                     width={30}
                     height={30}

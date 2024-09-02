@@ -4,8 +4,11 @@ import { Poppins } from "next/font/google";
 import { Josefin_Sans } from "next/font/google";
 import { ThemeProvider } from "./utils/theme-provider";
 import { Toaster } from "react-hot-toast";
+import React, { FC, useEffect } from "react";
 import { Providers } from "./Provider"
 import { SessionProvider } from "next-auth/react";
+import Loader from "./components/Loader/Loader";
+import { useLoadUserQuery } from "@/redux/features/api/apiSlice";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -32,7 +35,7 @@ export default function RootLayout({
           <SessionProvider>
             <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
               {/* <Custom> */}
-              <div>{children}</div>
+              {children}
               {/* </Custom> */}
               <Toaster position="bottom-right" reverseOrder={false} />
             </ThemeProvider>
@@ -42,3 +45,15 @@ export default function RootLayout({
     </html>
   );
 }
+
+
+
+const Custom: FC<{ children: React.ReactNode }> = ({ children }) => {
+  const { isLoading } = useLoadUserQuery({});
+
+  // useEffect(() => {
+  //   socketId.on("connection", () => { });
+  // }, []);
+
+  return <>{isLoading ? <Loader /> : <div>{children}</div>}</>;
+};
