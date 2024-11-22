@@ -230,12 +230,12 @@ export const logoutUser = CatchAsyncError(
         res.cookie("refresh_token", refreshToken, refreshTokenOptions);
   
 
-        return res.status(200).json({
-          success: true,
-          accessToken
-        })
+        // return res.status(200).json({
+        //   success: true,
+        //   accessToken
+        // })
   
-        return next();
+         next();
       } catch (error: any) {
         return next(new ErrorHandler(error.message, 400));
       }

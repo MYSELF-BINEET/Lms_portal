@@ -6,7 +6,7 @@ import { signOut } from "next-auth/react";
 import { redirect } from "next/navigation";
 import toast from "react-hot-toast";
 import ProfileInfo from "./ProfileInfo";
-// import ChangePassword from "./ChangePassword";
+import ChangePassword from "./ChangePassword";
 // import CourseCard from "../Course/CourseCard";
 // import { useGetUsersAllCoursesQuery } from "@/redux/features/courses/coursesApi";
 
@@ -78,7 +78,7 @@ const Profile: FC<Props> = ({ user }) => {
 
       {active === 2 && (
         <div className="w-full h-full bg-transparent mt-[80px]">
-          {/* <ChangePassword /> */}
+          <ChangePassword />
         </div>
       )}
 

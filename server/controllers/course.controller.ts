@@ -1,3 +1,4 @@
+require('dotenv').config();
 import { NextFunction, Request, Response } from "express";
 import { CatchAsyncError } from "../middleware/catchAsyncErrors";
 import ErrorHandler from "../utils/ErrorHandler";
@@ -10,6 +11,7 @@ import mongoose from "mongoose";
 import ejs from "ejs";
 import path from "path";
 import sendMail from "../utils/sendMail";
+import axios from "axios";
 
 
 
@@ -48,20 +50,22 @@ export const editCourse = CatchAsyncError(
 
             const courseId = req.params.id;
 
+            console.log(courseId);
+
             const courseData = await CourseModel.findById(courseId) as any;
 
-            if (thumbnail) {
-                await cloudinary.v2.uploader.destroy(courseData.thumbnail.public_id);
+            // if (thumbnail) {
+            //     await cloudinary.v2.uploader.destroy(courseData.thumbnail.public_id);
 
-                const myCloud = await cloudinary.v2.uploader.upload(thumbnail, {
-                    folder: "courses",
-                });
+            //     const myCloud = await cloudinary.v2.uploader.upload(thumbnail, {
+            //         folder: "courses",
+            //     });
 
-                data.thumbnail = {
-                    public_id: myCloud.public_id,
-                    url: myCloud.secure_url,
-                };
-            }
+            //     data.thumbnail = {
+            //         public_id: myCloud.public_id,
+            //         url: myCloud.secure_url,
+            //     };
+            // }
 
             // if (thumbnail.startsWith("https")) {
             //     data.thumbnail = {
@@ -467,6 +471,29 @@ export const getAdminAllCourses = CatchAsyncError(
           success: true,
           message: "course deleted successfully",
         });
+      } catch (error: any) {
+        return next(new ErrorHandler(error.message, 400));
+      }
+    }
+  );
+
+  // generate video url
+export const generateVideoUrl = CatchAsyncError(
+    async (req: Request, res: Response, next: NextFunction) => {
+      try {
+        const { videoId } = req.body;
+        const response = await axios.post(
+          `https://dev.vdocipher.com/api/videos/${videoId}/otp`,
+          { ttl: 300 },
+          {
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json",
+              Authorization: `Apisecret ${process.env.VDOCIPHER_API_SECRET}`,
+            },
+          }
+        );
+        res.json(response.data);
       } catch (error: any) {
         return next(new ErrorHandler(error.message, 400));
       }
