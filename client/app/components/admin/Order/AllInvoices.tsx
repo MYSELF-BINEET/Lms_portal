@@ -64,7 +64,7 @@ const AllInvoices = ({ isDashboard }: Props) => {
               return (
                 <a href={`mailto:${params.row.userEmail}`}>
                   <AiOutlineMail
-                    className="text-black dark:text-white"
+                    className="mt-4 text-black dark:text-white"
                     size={20}
                   />
                 </a>
@@ -171,7 +171,7 @@ const rows: any = [
               "& .MuiDataGrid-columnHeaders": {
                 backgroundColor: theme === "dark" ? "#3e4396" : "#A4A9FC",
                 borderBottom: "none",
-                color: theme === "dark" ? "#fff" : "#000",
+                color: theme === "dark" ? "#000" : "#000",
               },
               "& .MuiDataGrid-virtualScroller": {
                 backgroundColor: theme === "dark" ? "#1F2A40" : "#F2F0F0",
