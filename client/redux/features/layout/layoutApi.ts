@@ -24,7 +24,22 @@ export const layoutApi = apiSlice.injectEndpoints({
         credentials: "include" as const,
       }),
     }),
+    createLayout: builder.mutation({
+      query: ({ type, image, title, subTitle, faq, categories }) => ({
+        url: `create-layout`,
+        body: {
+          type,
+          image,
+          title,
+          subTitle,
+          faq,
+          categories,
+        },
+        method: "POST",
+        credentials: "include" as const,
+      }),
+    }),
   }),
 });
 
-export const { useGetHeroDataQuery,useEditLayoutMutation } = layoutApi;
+export const { useGetHeroDataQuery,useEditLayoutMutation ,useCreateLayoutMutation} = layoutApi;

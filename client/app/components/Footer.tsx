@@ -104,7 +104,7 @@ const Footer = (props: Props) => {
             </p>
            
             <p className="pb-2 text-base text-black dark:text-gray-300 dark:hover:text-white">
-            Address: AE-16 ,Kestopur RabindraPally , 700101
+            510 Townsend St ,98140 ,San Francisco ,CA,USA
             </p>
          
             <p className="pb-2 text-base text-black dark:text-gray-300 dark:hover:text-white">

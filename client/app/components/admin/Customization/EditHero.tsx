@@ -2,6 +2,7 @@ import { styles } from "@/app/styles/style";
 import {
   useEditLayoutMutation,
   useGetHeroDataQuery,
+  useCreateLayoutMutation
 } from "@/redux/features/layout/layoutApi";
 import React, { FC, useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
@@ -50,7 +51,7 @@ const EditHero: FC<Props> = (props: Props) => {
   };
 
   const handleEdit = async () => {
-    await editLayout({
+    await  editLayout({
       type: "Banner",
       image,
       title,
