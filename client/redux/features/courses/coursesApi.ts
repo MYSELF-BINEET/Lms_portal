@@ -25,7 +25,7 @@ export const coursesApi = apiSlice.injectEndpoints({
       }),
     }),
     editCourse: builder.mutation({
-      query: ( {id, data} ) => ({
+      query: ( {id,data} ) => ({
         url: `edit-course/${id}`,
         method: "PUT",
         body: data,

@@ -68,10 +68,7 @@ const Reviews = (props: Props) => {
           </h3>
           <br />
           <p className={styles.label}>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque unde
-            voluptatum dignissimos, nulla perferendis dolorem voluptate nemo
-            possimus magni deleniti natus accusamus officiis quasi nihil
-            commodi, praesentium quidem, quis doloribus?
+          The LMS portal is a game-changer for learning! Its intuitive interface, easy access to resources, and interactive features make studying so much more efficient and engaging. The ability to track my progress and revisit topics at my own pace has significantly improved my understanding. Truly an outstanding platform for learners of all levels!
           </p>
         </div>
         <br />

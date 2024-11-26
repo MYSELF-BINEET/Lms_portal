@@ -22,6 +22,7 @@ export const uploadCourse = CatchAsyncError(
         try {
             const data = req.body;
             const thumbnail = data.thumbnail;
+            // console.log(thumbnail);
             if (thumbnail) {
                 const myCloud = await cloudinary.v2.uploader.upload(thumbnail, {
                     folder: "courses",
@@ -45,41 +46,51 @@ export const editCourse = CatchAsyncError(
     async (req: Request, res: Response, next: NextFunction) => {
         try {
             const data = req.body;
+            // console.log( typeof data);
 
             const thumbnail = data.thumbnail;
 
             const courseId = req.params.id;
 
-            console.log(courseId);
+
+            // console.log( typeof courseId);
+            // console.log(courseId);
+            console.log(thumbnail)
 
             const courseData = await CourseModel.findById(courseId) as any;
+            // console.log(thumbnail);
 
-            if (thumbnail) {
-                await cloudinary.v2.uploader.destroy(courseData.thumbnail.public_id);
+            // if (thumbnail) {
+            //     const publicId=thumbnail.public_id;
+            //     console.log(publicId);
+            //     await cloudinary.v2.uploader.destroy(publicId,(error: any,result: any)=>{
+            //         if (error) {
+            //             console.error("Error deleting image:", error);
+            //           } else {
+            //             console.log("Image deleted successfully:", result);
+            //           }
+            //     });
 
-                const myCloud = await cloudinary.v2.uploader.upload(thumbnail, {
-                    folder: "courses",
-                });
+            //     if (thumbnail) {
+            //         const myCloud = await cloudinary.v2.uploader.upload(thumbnail, {
+            //             folder: "courses",
+            //         });
+    
+            //         data.thumbnail = {
+            //             public_id: myCloud.public_id,
+            //             url: myCloud.secure_url,
+            //         };
+            //     }
+            // }
 
-                data.thumbnail = {
-                    public_id: myCloud.public_id,
-                    url: myCloud.secure_url,
-                };
-            }
-
-            if (thumbnail.startsWith("https")) {
-                data.thumbnail = {
-                    public_id: courseData?.thumbnail.public_id,
-                    url: courseData?.thumbnail.url,
-                };
-            }
-            const course = await CourseModel.findByIdAndUpdate(
-                courseId,
-                {
-                    $set: data,
-                },
-                { new: true }
-            );
+            // if (thumbnail.startsWith("https")) {
+            //     data.thumbnail = {
+            //         public_id: courseData?.thumbnail.public_id,
+            //         url: courseData?.thumbnail.url,
+            //     };
+            // }
+            const course = await CourseModel.findByIdAndUpdate(courseId,data);
+            console.log(course);
             await redis.set(courseId, JSON.stringify(course)); // update course in redis
             res.status(201).json({
                 success: true,

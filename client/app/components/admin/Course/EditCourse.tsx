@@ -123,7 +123,7 @@ const EditCourse:FC<Props> = ({id}) => {
       price: courseInfo.price,
       estimatedPrice: courseInfo.estimatedPrice,
       tags: courseInfo.tags,
-      thumbnail: courseInfo.thumbnail,
+      thumbnail: editCourseData.thumbnail,
       level: courseInfo.level,
       demoUrl: courseInfo.demoUrl,
       totalVideos: courseContentData.length,
@@ -138,7 +138,7 @@ const EditCourse:FC<Props> = ({id}) => {
 
   const handleCourseCreate = async (e: any) => {
     const data = courseData;
-    await editCourse({id:editCourseData?._id,data});
+    await editCourse({id:editCourseData._id,data:data});
   };
 
   return (

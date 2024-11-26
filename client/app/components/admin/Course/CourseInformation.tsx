@@ -167,6 +167,7 @@ const CourseInformation: FC<Props> = ({
             </label>
             <select
               name=""
+              required
               id=""
               className={`${styles.input}`}
               value={courseInfo.category}

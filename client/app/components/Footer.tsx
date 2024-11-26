@@ -73,7 +73,7 @@ const Footer = (props: Props) => {
             <ul className="space-y-4">
               <li>
                 <Link
-                  href="https://www.youtube.com/channel/UCHz6Sne9splmvm-q2w1_HWQ"
+                  href="https://www.youtube.com/"
                   className="text-base text-black dark:text-gray-300 dark:hover:text-white"
                 >
                   Youtube

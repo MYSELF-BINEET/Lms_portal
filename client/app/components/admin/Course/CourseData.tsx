@@ -21,11 +21,11 @@ const CourseData: FC<Props> = ({
   setActive,
 }) => {
 
-  const handleBenefitChange = (index: number, value: any) => {
-    const updatedBenefits = [...benefits];
-    updatedBenefits[index].title = value;
-    setBenefits(updatedBenefits);
-  };
+  // const handleBenefitChange = (index: number, value: any) => {
+  //   const updatedBenefits = [...benefits];
+  //   updatedBenefits[index].title = value;
+  //   setBenefits(updatedBenefits);
+  // };
 
   const handleAddBenefit = () => {
     setBenefits([...benefits, { title: "" }]);
@@ -62,16 +62,20 @@ const CourseData: FC<Props> = ({
         </label>
         <br />
         {benefits.map((benefit: any, index: number) => (
-          <input
-            type="text"
-            key={index}
-            name="Benefit"
-            placeholder="You will be able to build a full stack LMS Platform..."
-            required
-            className={`${styles.input} my-2`}
-            value={benefit.title}
-            onChange={(e) => handleBenefitChange(index, e.target.value)}
-          />
+           <input
+           type="text"
+           name="Benefit"
+           placeholder="You will be able to build a full stack LMS Platform..."
+           required={true}
+           className={`${styles.input} my-2`}
+           value={benefit.title || ""}
+           onChange={(e) => {
+             const updatedBenefits = [...benefits];
+             updatedBenefits[index] = { ...updatedBenefits[index], title: e.target.value };
+             setBenefits(updatedBenefits);
+           }}
+           key={index}
+         />
         ))}
         <AiOutlinePlusCircle
           style={{ margin: "10px 0px", cursor: "pointer", width: "30px" }}
@@ -84,21 +88,28 @@ const CourseData: FC<Props> = ({
         What are the prerequisites for starting this course?
         </label>
         <br />
-        {prerequisites.map((prerequisites: any, index: number) => (
-          <input
-            type="text"
-            key={index}
-            name="prerequisites"
-            placeholder="You need basic knowledge of MERN stack"
-            required
-            className={`${styles.input} my-2`}
-            value={prerequisites.title}
-            onChange={(e) => handlePrerequisitesChange(index, e.target.value)}
-          />
-        ))}
+        {prerequisites.map((item, index) => (
+        <input
+          key={index}
+          type="text"
+          name="prerequisites"
+          placeholder="You need basic knowledge of MERN stack"
+          required
+          className={`${styles.input} my-2`}
+          value={item.title || ""} 
+          onChange={(e) => {
+            const updatedPrerequisites = [...prerequisites];
+            updatedPrerequisites[index] = {
+              ...updatedPrerequisites[index],
+              title: e.target.value,
+            };
+            setPrerequisites(updatedPrerequisites);
+          }}
+        />
+      ))}
+
         <AiOutlinePlusCircle
           style={{ margin: "10px 0px", cursor: "pointer", width: "30px" }}
-
           onClick={handleAddPrerequisites}
         />
       </div>
