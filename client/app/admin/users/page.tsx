@@ -1,5 +1,5 @@
 'use client'
-import DashboardHero from '@/app/components/Admin/DashboardHero'
+import DashboardHero from '@/app/components/admin/DashBoardHero'
 import AdminProtected from '@/app/hooks/adminProtected'
 import Heading from '@/app/utils/Heading'
 import React from 'react'

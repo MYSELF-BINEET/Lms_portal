@@ -26,14 +26,14 @@ type Props = {
 };
 
 const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
-  const isLoading=false;
+  // const isLoading=false;
   // const userData=null;
   const [active, setActive] = useState(false);
   const [openSidebar, setOpenSidebar] = useState(false);
   const {user} =useSelector((state:any)=>state.auth);
   const { data } = useSession();
   console.log(data);
-  // const {data:userData,isLoading,refetch} = useLoadUserQuery(undefined,{});
+  const {data:userData,isLoading,refetch} = useLoadUserQuery(undefined,{});
   const [socialAuth, { isSuccess, error }] = useSocialAuthMutation();
   const [logout, setLogout] = useState(false);
   const {} = useLogOutQuery(undefined, {
@@ -41,7 +41,7 @@ const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
   });
 
   useEffect(() => {
-    // if(!isLoading){
+    if(!isLoading){
     console.log(data);
       if (!user) {
         if (data) {
@@ -50,8 +50,8 @@ const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
             name: data?.user?.name,
             avatar: data.user?.image,
           });
-          // refetch();
-        // }
+          refetch();
+        }
       }
       if(data === null){
         if(isSuccess){
@@ -188,7 +188,7 @@ const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
               setRoute={setRoute}
               activeItem={activeItem}
               component={Login}
-              // refetch={refetch}
+              refetch={refetch}
             />
           )}
         </>
@@ -203,7 +203,7 @@ const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
               setRoute={setRoute}
               activeItem={activeItem}
               component={SignUp}
-              // refetch={refetch}
+              refetch={refetch}
             />
           )}
         </>
