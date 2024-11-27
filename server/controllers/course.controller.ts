@@ -22,7 +22,6 @@ export const uploadCourse = CatchAsyncError(
         try {
             const data = req.body;
             const thumbnail = data.thumbnail;
-            // console.log(thumbnail);
             if (thumbnail) {
                 const myCloud = await cloudinary.v2.uploader.upload(thumbnail, {
                     folder: "courses",
@@ -46,51 +45,43 @@ export const editCourse = CatchAsyncError(
     async (req: Request, res: Response, next: NextFunction) => {
         try {
             const data = req.body;
-            // console.log( typeof data);
 
             const thumbnail = data.thumbnail;
+            console.log(thumbnail);
 
             const courseId = req.params.id;
 
-
-            // console.log( typeof courseId);
-            // console.log(courseId);
-            console.log(thumbnail)
-
             const courseData = await CourseModel.findById(courseId) as any;
-            // console.log(thumbnail);
 
-            // if (thumbnail) {
-            //     const publicId=thumbnail.public_id;
-            //     console.log(publicId);
-            //     await cloudinary.v2.uploader.destroy(publicId,(error: any,result: any)=>{
-            //         if (error) {
-            //             console.error("Error deleting image:", error);
-            //           } else {
-            //             console.log("Image deleted successfully:", result);
-            //           }
-            //     });
+            if (typeof(thumbnail)!="string") {
+                const publicId=courseData.thumbnail.public_id;
+                await cloudinary.v2.uploader.destroy(publicId,(error: any,result: any)=>{
+                    if (error) {
+                        console.error("Error deleting image:", error);
+                      } else {
+                        console.log("Image deleted successfully:", result);
+                      }
+                });
 
-            //     if (thumbnail) {
-            //         const myCloud = await cloudinary.v2.uploader.upload(thumbnail, {
-            //             folder: "courses",
-            //         });
+                if (thumbnail) {
+                    const myCloud = await cloudinary.v2.uploader.upload(thumbnail, {
+                        folder: "courses",
+                    });
     
-            //         data.thumbnail = {
-            //             public_id: myCloud.public_id,
-            //             url: myCloud.secure_url,
-            //         };
-            //     }
-            // }
+                    data.thumbnail = {
+                        public_id: myCloud.public_id,
+                        url: myCloud.secure_url,
+                    };
+                }
+            }
 
-            // if (thumbnail.startsWith("https")) {
-            //     data.thumbnail = {
-            //         public_id: courseData?.thumbnail.public_id,
-            //         url: courseData?.thumbnail.url,
-            //     };
-            // }
-            const course = await CourseModel.findByIdAndUpdate(courseId,data);
-            console.log(course);
+            if (thumbnail.startsWith("https")) {
+                data.thumbnail = {
+                    public_id: courseData?.thumbnail.public_id,
+                    url: courseData?.thumbnail.url,
+                };
+            }
+            const course = await CourseModel.findByIdAndUpdate(courseId,data);console.log("Course uploaded successfully");
             await redis.set(courseId, JSON.stringify(course)); // update course in redis
             res.status(201).json({
                 success: true,
@@ -489,24 +480,24 @@ export const getAdminAllCourses = CatchAsyncError(
   );
 
   // generate video url
-export const generateVideoUrl = CatchAsyncError(
-    async (req: Request, res: Response, next: NextFunction) => {
-      try {
-        const { videoId } = req.body;
-        const response = await axios.post(
-          `https://dev.vdocipher.com/api/videos/${videoId}/otp`,
-          { ttl: 300 },
-          {
-            headers: {
-              Accept: "application/json",
-              "Content-Type": "application/json",
-              Authorization: `Apisecret ${process.env.VDOCIPHER_API_SECRET}`,
-            },
-          }
-        );
-        res.json(response.data);
-      } catch (error: any) {
-        return next(new ErrorHandler(error.message, 400));
-      }
-    }
-  );
+// export const generateVideoUrl = CatchAsyncError(
+//     async (req: Request, res: Response, next: NextFunction) => {
+//       try {
+//         const { videoId } = req.body;
+//         const response = await axios.post(
+//           `https://dev.vdocipher.com/api/videos/${videoId}/otp`,
+//           { ttl: 300 },
+//           {
+//             headers: {
+//               Accept: "application/json",
+//               "Content-Type": "application/json",
+//               Authorization: `Apisecret ${process.env.VDOCIPHER_API_SECRET}`,
+//             },
+//           }
+//         );
+//         res.json(response.data);
+//       } catch (error: any) {
+//         return next(new ErrorHandler(error.message, 400));
+//       }
+//     }
+//   );

@@ -170,7 +170,7 @@ const CourseInformation: FC<Props> = ({
               required
               id=""
               className={`${styles.input}`}
-              value={courseInfo.category}
+              value={courseInfo.categories}
               onChange={(e: any) =>
                 setCourseInfo({ ...courseInfo, categories: e.target.value })
               }
@@ -237,9 +237,8 @@ const CourseInformation: FC<Props> = ({
           />
           <label
             htmlFor="file"
-            className={`w-full min-h-[10vh] dark:border-white border-[#00000026] p-3 border flex items-center justify-center ${
-              dragging ? "bg-blue-500" : "bg-transparent"
-            }`}
+            className={`w-full min-h-[10vh] dark:border-white border-[#00000026] p-3 border flex items-center justify-center ${dragging ? "bg-blue-500" : "bg-transparent"
+              }`}
             onDragOver={handleDragOver}
             onDragLeave={handleDragLeave}
             onDrop={handleDrop}

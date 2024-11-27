@@ -61,7 +61,7 @@ const Reviews = (props: Props) => {
         height={700}
         />
         </div>
-        <div className="800px:w-[50%] w-full">
+        <div className="800px:w-[50%] w-full mb-10">
           <h3 className={`${styles.title} 800px:!text-[40px]`}>
             Our Students Are <span className="text-gradient">Our Strength</span>{" "}
             <br /> See What They Say About Us
@@ -71,6 +71,7 @@ const Reviews = (props: Props) => {
           The LMS portal is a game-changer for learning! Its intuitive interface, easy access to resources, and interactive features make studying so much more efficient and engaging. The ability to track my progress and revisit topics at my own pace has significantly improved my understanding. Truly an outstanding platform for learners of all levels!
           </p>
         </div>
+        <br />
         <br />
         <br />
        </div>
