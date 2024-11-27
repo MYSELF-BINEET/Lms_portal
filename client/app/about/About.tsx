@@ -55,7 +55,7 @@ const About = () => {
           sky&apos;s the limit.
         </p>
         <br />
-        <span className="text-[22px]">Shahriarsajeeb&apos;s</span>
+        <span className="text-[22px]">Bineet Pradhan&apos;s</span>
         <h5 className="text-[18px] font-Poppins">
           Founder and CEO of E-learning
         </h5>
