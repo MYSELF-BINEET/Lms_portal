@@ -77,6 +77,7 @@ const EditCourse:FC<Props> = ({id}) => {
       title: "",
       description: "",
       videoSection: "Untitled Section",
+      videoLength: "",
       links: [
         {
           title: "",
@@ -107,6 +108,7 @@ const EditCourse:FC<Props> = ({id}) => {
         title: courseContent.title,
         description: courseContent.description,
         videoSection: courseContent.videoSection,
+        videoLength: courseContent.videoLength,
         links: courseContent.links.map((link) => ({
           title: link.title,
           url: link.url,
@@ -129,7 +131,7 @@ const EditCourse:FC<Props> = ({id}) => {
       totalVideos: courseContentData.length,
       benefits: formattedBenefits,
       prerequisites: formattedPrerequisites,
-      courseContent: formattedCourseContentData,
+      courseData: formattedCourseContentData,
     };
 
     setCourseData(data);

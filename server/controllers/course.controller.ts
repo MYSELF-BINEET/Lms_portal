@@ -47,13 +47,13 @@ export const editCourse = CatchAsyncError(
             const data = req.body;
 
             const thumbnail = data.thumbnail;
-            console.log(thumbnail);
+            // console.log(data);
 
             const courseId = req.params.id;
 
             const courseData = await CourseModel.findById(courseId) as any;
 
-            if (typeof(thumbnail)!="string") {
+            if (!thumbnail.startsWith("https")) {
                 const publicId=courseData.thumbnail.public_id;
                 await cloudinary.v2.uploader.destroy(publicId,(error: any,result: any)=>{
                     if (error) {
@@ -81,7 +81,16 @@ export const editCourse = CatchAsyncError(
                     url: courseData?.thumbnail.url,
                 };
             }
-            const course = await CourseModel.findByIdAndUpdate(courseId,data);console.log("Course uploaded successfully");
+            console.log(data);
+            const course = await CourseModel.findByIdAndUpdate(
+                courseId,
+                {
+                  $set: data,
+                },
+                { new: true }
+              );
+
+            // console.log(course);
             await redis.set(courseId, JSON.stringify(course)); // update course in redis
             res.status(201).json({
                 success: true,
