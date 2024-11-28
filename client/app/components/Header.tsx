@@ -42,8 +42,7 @@ const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
 
   useEffect(() => {
     if(!isLoading){
-    console.log(data);
-      if (!user) {
+      if (!userData) {
         if (data) {
           socialAuth({
             email: data?.user?.email,
@@ -58,7 +57,7 @@ const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
           toast.success("Login Successfully");
         }
       }
-      if(data === null){      //  && !isLoading && !userData
+      if(data === null  && !isLoading && !userData){     
           setLogout(true);
       }
     }
@@ -121,7 +120,7 @@ const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
               <div className="hidden text-black cursor-pointer 800px:block dark:text-white">
                 <Link href={"/profile"}>
                   <Image
-                    src={user.avatar ? user.avatar.url :avatar}     //  userData?.user.avatar ? userData.user.avatar.url :
+                    src={userData?.user.avatar ? userData?.user.avatar.url : avatar}    //  userData?.user.avatar ? userData.user.avatar.url :
                     alt=""
                     width={30}
                     height={30}
@@ -150,11 +149,11 @@ const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
           >
             <div className="w-[70%] fixed z-[999999999] h-screen bg-white dark:bg-slate-900 dark:bg-opacity-90 top-0 right-0">
               <NavItems activeItem={activeItem} isMobile={true} />
-               {user? ( 
+               {userData? ( 
                 // <div className="800px:hiddden">
                 <Link href={"/profile"}>
                   <Image
-                    src={ user.avatar ? user.avatar.url : avatar}   // userData?.user.avatar ? userData.user.avatar.url :  
+                    src={userData?.user.avatar ? userData?.user.avatar.url : avatar}   // userData?.user.avatar ? userData.user.avatar.url :  
                     alt=""
                     width={30}
                     height={30}
