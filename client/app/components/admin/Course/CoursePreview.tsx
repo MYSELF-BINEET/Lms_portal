@@ -38,7 +38,7 @@ const CoursePreview: FC<Props> = ({
   };
 
   return (
-    <div className="w-[90%] m-auto py-5 mb-5">
+    <div className="w-[90%] m-auto py-5 mb-5 dark:text-[#fff] text-black ">
       <div className="relative w-full">
         <div className="w-full mt-10">
           <CoursePlayer

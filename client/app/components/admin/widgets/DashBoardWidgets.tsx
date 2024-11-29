@@ -116,12 +116,11 @@ const DashboardWidgets: FC<Props> = ({ open }) => {
                   ? 100 
                   : 0
                 } open={open} />
-                <h5 className="pt-4 text-center">
+                <h5 className="pt-4 text-center dark:text-[#fff] text-black ">
                  {
                   ordersComparePercentage?.percentChange > 0 
                   ? "+" + ordersComparePercentage?.percentChange.toFixed(2)
-                  : "-" + ordersComparePercentage?.percentChange.toFixed(2)
-                 } %
+                  : "-" + ordersComparePercentage?.percentChange.toFixed(2)} %
                 </h5>
               </div>
             </div>
@@ -144,7 +143,7 @@ const DashboardWidgets: FC<Props> = ({ open }) => {
                   ? 100 
                   : 0
                 } open={open} />
-                <h5 className="pt-4 text-center">
+                <h5 className="pt-4 text-center dark:text-[#fff] text-black ">
                   {userComparePercentage?.percentChange > 0
                     ? "+" + userComparePercentage?.percentChange.toFixed(2) 
                     : "-" + userComparePercentage?.percentChange.toFixed(2)} %
