@@ -74,50 +74,50 @@ const AllInvoices = ({ isDashboard }: Props) => {
         ]),
   ];
 
-//   const rows: any = [];
+  const rows: any = [];
 
-const rows: any = [
-    {
-      id: 1,
-      userName: "John Doe",
-      userEmail: "john.doe@example.com",
-      title: "React for Beginners",
-      price: "$49.99",
-      created_at: "2023-10-01",
-    },
-    {
-      id: 2,
-      userName: "Jane Smith",
-      userEmail: "jane.smith@example.com",
-      title: "Node.js Fundamentals",
-      price: "$59.99",
-      created_at: "2023-09-25",
-    },
-    {
-      id: 3,
-      userName: "Mark Johnson",
-      userEmail: "mark.johnson@example.com",
-      title: "Mastering TypeScript",
-      price: "$69.99",
-      created_at: "2023-08-15",
-    },
-    {
-      id: 4,
-      userName: "Emily Davis",
-      userEmail: "emily.davis@example.com",
-      title: "Advanced Python Programming",
-      price: "$79.99",
-      created_at: "2023-07-22",
-    },
-    {
-      id: 5,
-      userName: "David Lee",
-      userEmail: "david.lee@example.com",
-      title: "Web Development with Next.js",
-      price: "$89.99",
-      created_at: "2023-06-10",
-    },
-  ];
+// const rows: any = [
+//     {
+//       id: 1,
+//       userName: "John Doe",
+//       userEmail: "john.doe@example.com",
+//       title: "React for Beginners",
+//       price: "$49.99",
+//       created_at: "2023-10-01",
+//     },
+//     {
+//       id: 2,
+//       userName: "Jane Smith",
+//       userEmail: "jane.smith@example.com",
+//       title: "Node.js Fundamentals",
+//       price: "$59.99",
+//       created_at: "2023-09-25",
+//     },
+//     {
+//       id: 3,
+//       userName: "Mark Johnson",
+//       userEmail: "mark.johnson@example.com",
+//       title: "Mastering TypeScript",
+//       price: "$69.99",
+//       created_at: "2023-08-15",
+//     },
+//     {
+//       id: 4,
+//       userName: "Emily Davis",
+//       userEmail: "emily.davis@example.com",
+//       title: "Advanced Python Programming",
+//       price: "$79.99",
+//       created_at: "2023-07-22",
+//     },
+//     {
+//       id: 5,
+//       userName: "David Lee",
+//       userEmail: "david.lee@example.com",
+//       title: "Web Development with Next.js",
+//       price: "$89.99",
+//       created_at: "2023-06-10",
+//     },
+//   ];
 
   orderData &&
     orderData.forEach((item: any) => {
