@@ -81,9 +81,9 @@ const DashboardHeader: FC<Props> = ({ open, setOpen }) => {
                 key={index} 
               >
                 <div className="flex items-center justify-between w-full p-2">
-                  <p className="text-black dark:text-white">{item.title}</p>  
+                  <p className="text-[#2980B9]">{item.title}</p>  
                   <p
-                    className="text-black cursor-pointer dark:text-white"
+                    className="cursor-pointer text-[#EE4B2B]"
                     onClick={() => handleNotificationStatusChange(item._id)}
                   >
                     Mark as read
