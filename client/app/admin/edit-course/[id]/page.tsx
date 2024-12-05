@@ -7,7 +7,7 @@ import EditCourse from "../../../components/admin/Course/EditCourse";
 
 type Props = {}
 
-const page = ({params}:any) => {
+const Page = ({params}:any) => {
     const id = params?.id;
 
   return (
@@ -30,4 +30,4 @@ const page = ({params}:any) => {
   )
 }
 
-export default page
+export default Page

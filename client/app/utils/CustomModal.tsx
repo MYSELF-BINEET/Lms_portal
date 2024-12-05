@@ -27,4 +27,4 @@ const CustomModal: FC<Props> = ({open,setOpen,setRoute,component:Component,refet
   )
 }
 
-export default CustomModal
+export default CustomModal;

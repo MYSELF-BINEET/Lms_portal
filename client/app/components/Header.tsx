@@ -32,7 +32,6 @@ const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
   const [openSidebar, setOpenSidebar] = useState(false);
   const {user} =useSelector((state:any)=>state.auth);
   const { data } = useSession();
-  console.log(data);
   const {data:userData,isLoading,refetch} = useLoadUserQuery(undefined,{});
   const [socialAuth, { isSuccess, error }] = useSocialAuthMutation();
   const [logout, setLogout] = useState(false);
