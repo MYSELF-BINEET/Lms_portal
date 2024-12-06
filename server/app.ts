@@ -26,7 +26,7 @@ app.use(cookieParser());
 
 //cors => cross resource sharing
 app.use(cors({
-    origin:"http://localhost:3000",
+    origin:"https://lms-client-x27y.onrender.com",
     methods:'GET,POST,PUT,DELETE',
     credentials: true
 }));
