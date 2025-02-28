@@ -69,5 +69,3 @@ app.use(limiter);
 app.use(ErrorMiddleware);
 
 
-// this is an example
-
