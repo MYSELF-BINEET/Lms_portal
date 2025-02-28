@@ -69,4 +69,3 @@ app.use(limiter);
 app.use(ErrorMiddleware);
 
  // SOME EXPERIMENT
- // EXPERIMENT NO 2
