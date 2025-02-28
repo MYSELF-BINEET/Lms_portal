@@ -91,3 +91,4 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## Contact
 For any queries or issues, feel free to contact the project maintainer at [bineetpradhan03@gmail.com](mailto:bineetpradhan03@gmail.com).
+
