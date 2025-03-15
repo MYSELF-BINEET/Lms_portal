@@ -71,3 +71,12 @@ app.use(ErrorMiddleware);
 
  // SOME EXPERIMENT
 // experiment 3
+ // SOME EXPERIMENT
+
+
+
+ app.get("/bineet",async(req:Request,res:Response,next:NextFunction)=>{
+    return res.status(200).json({
+        message:"Hi i am bineet router"
+    })
+ })
